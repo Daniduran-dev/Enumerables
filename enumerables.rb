@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength, Style/IfInsideElse, Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/AbcSize,  Metrics/CyclomaticComplexity Metrics/CyclomaticComplexity,  Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/ModuleLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -160,4 +160,4 @@ end
 def multiply_els(arg)
   arg.my_inject(:*)
 end
-# rubocop:enable Metrics/ModuleLength, Style/IfInsideElse, Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/AbcSize,  Metrics/CyclomaticComplexity Metrics/CyclomaticComplexity,  Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ModuleLength
