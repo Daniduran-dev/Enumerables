@@ -1,6 +1,6 @@
 # Ruby Enumerables Methods
 
-> In this prject I have replicated some of the most common enumerable Ruby methods.
+> In this project I have replicated some of the most common enumerable Ruby methods.
 You will find replicas for #each, #each_with_index, #count, #all, #any, #none, #map, #select and #inject.
 
 ## Built With
