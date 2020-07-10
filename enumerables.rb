@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength, Style/Documentation, Style/FrozenStringLiteralComment
+# rubocop:disable Metrics/ModuleLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -19,7 +19,6 @@ module Enumerable
     end
   end
 
-  # rubocop:disable Metrics/MethodLength
   def my_select(arg = nil)
     return to_enum(:my_select) unless block_given? || !arg.nil?
 
@@ -38,7 +37,7 @@ module Enumerable
   end
 
   # rubocop:enable Metrics/MethodLength
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_all?(arg = nil)
     return false unless block_given? || arg.nil? == false || empty?
 
@@ -63,7 +62,6 @@ module Enumerable
   end
 
   # rubocop:enable Metrics/AbcSize
-  # rubocop:disable Metrics/AbcSize
   def my_any?(arg = nil)
     return true if !block_given? && arg.nil? && !(self.select { |x| x }).empty?
     return false unless block_given? || !arg.nil?
@@ -94,7 +92,6 @@ module Enumerable
     !my_any?(arg, &block)
   end
 
-  # rubocop:disable Metrics/MethodLength
   def my_count(arg = nil)
     counter = 0
     if arg.nil? == false
@@ -137,7 +134,7 @@ module Enumerable
     arr
   end
 
-  # rubocop:disable Metrics/PerceivedComplexity, Metrics/AbcSize
+  # rubocop:disable Metrics/PerceivedComplexity
 
   def my_inject(arg = nil, sym = nil)
     arr = to_a
