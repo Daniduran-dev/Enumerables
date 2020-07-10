@@ -160,7 +160,7 @@ module Enumerable
     acc
   end
 end
-# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength, Style/Documentation, Style/FrozenStringLiteralComment
+# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength
 def multiply_els(arg)
   arg.my_inject(:*)
 end
