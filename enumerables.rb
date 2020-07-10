@@ -36,7 +36,6 @@ module Enumerable
     arr
   end
 
-  # rubocop:enable Metrics/MethodLength
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_all?(arg = nil)
     return false unless block_given? || arg.nil? == false || empty?
@@ -61,7 +60,6 @@ module Enumerable
     true
   end
 
-  # rubocop:enable Metrics/AbcSize
   def my_any?(arg = nil)
     return true if !block_given? && arg.nil? && !(self.select { |x| x }).empty?
     return false unless block_given? || !arg.nil?
@@ -86,7 +84,6 @@ module Enumerable
     end
   end
 
-  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
   # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_none?(arg = nil, &block)
     !my_any?(arg, &block)
@@ -114,7 +111,6 @@ module Enumerable
     counter
   end
 
-  # rubocop:enable Metrics/MethodLength
   # rubocop:disable Metrics/MethodLength
   def my_map(proc = nil)
     return to_enum(:my_map) unless block_given?
@@ -164,7 +160,7 @@ module Enumerable
     acc
   end
 end
-# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/AbcSize, Style/Documentation, Style/FrozenStringLiteralComment
+# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength, Style/Documentation, Style/FrozenStringLiteralComment
 def multiply_els(arg)
   arg.my_inject(:*)
 end
