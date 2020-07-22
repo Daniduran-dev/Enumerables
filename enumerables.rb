@@ -206,7 +206,6 @@ module Enumerable
     end
     acc
   end
-end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength
 
 def multiply_els(arg)
