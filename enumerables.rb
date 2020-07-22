@@ -28,7 +28,7 @@ module Enumerable
         index += 1
       end
     else
-      size.times do |x|https://github.com/vzdrizhni/road-rash/issues/2
+      size.times do |x|
         yield(to_a[x], index)
         index += 1
       end
