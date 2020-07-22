@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength
+
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -36,7 +36,6 @@ module Enumerable
     self
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_select(arg = nil)
     return to_enum(:my_select) unless block_given? || !arg.nil?
 
@@ -59,7 +58,6 @@ module Enumerable
     arr || hash
   end
 
-  # rubocop:disable Metrics/MethodLength
   def my_all?(arg = nil)
     return false unless block_given? || arg.nil? == false || empty?
 
@@ -148,8 +146,8 @@ module Enumerable
     end
     counter
   end
+
   # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
-  # rubocop:disable Metrics/MethodLength
   def my_map(proc = nil)
     return to_enum(:my_map) unless block_given?
 
@@ -208,8 +206,9 @@ module Enumerable
     end
     acc
   end
-  end
+end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+
 def multiply_els(arg)
   arg.my_inject(:*)
 end
