@@ -36,6 +36,7 @@ module Enumerable
     self
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_select(arg = nil)
     return to_enum(:my_select) unless block_given? || !arg.nil?
 
@@ -58,7 +59,7 @@ module Enumerable
     arr || hash
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/MethodLength
   def my_all?(arg = nil)
     return false unless block_given? || arg.nil? == false || empty?
 
@@ -114,7 +115,6 @@ module Enumerable
     end
   end
 
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_none?(arg = nil, &block)
     !my_any?(arg, &block)
   end
@@ -124,7 +124,7 @@ module Enumerable
     if arg.nil? == false
       if is_a? Hash
         my_each do |x, y|
-          counter += 1 if [x, y] == arg
+          counter += 1 if arg == [x, y]
         end
       else
         my_each do |x|
@@ -148,7 +148,7 @@ module Enumerable
     end
     counter
   end
-
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
   # rubocop:disable Metrics/MethodLength
   def my_map(proc = nil)
     return to_enum(:my_map) unless block_given?
@@ -166,13 +166,12 @@ module Enumerable
           arr.push(r)
         end
       end
-    else
-      if is_a? Hash
+    elsif is_a? Hash
         my_each do |x, y|
           r = proc.call(x, y)
           arr.push(r)
         end
-      else
+    else
         to_a.my_each do |x|
           r = yield(x)
           arr.push(r)
@@ -181,8 +180,6 @@ module Enumerable
     end
     arr
   end
-
-  # rubocop:disable Metrics/PerceivedComplexity
 
   def my_inject(arg = nil, sym = nil)
     arr = to_a
