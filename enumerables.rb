@@ -60,6 +60,7 @@ module Enumerable
   end
   # rubocop:disable Metrics/MethodLength
   def my_all?(arg = nil)
+    
     return false unless block_given? || arg.nil? == false || empty?
 
     if block_given?
