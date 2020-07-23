@@ -36,7 +36,7 @@ module Enumerable
     self
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
   def my_select(arg = nil)
     return to_enum(:my_select) unless block_given? || !arg.nil?
 
