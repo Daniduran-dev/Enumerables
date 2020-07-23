@@ -1,4 +1,4 @@
-
+# rubocop:disable Metrics/ModuleLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -147,7 +147,7 @@ module Enumerable
     counter
   end
 
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
+  # rubocop:enable
   def my_map(proc = nil)
     return to_enum(:my_map) unless block_given?
 
@@ -165,49 +165,49 @@ module Enumerable
         end
       end
     elsif is_a? Hash
-        my_each do |x, y|
-          r = proc.call(x, y)
-          arr.push(r)
-        end
+      my_each do |x, y|
+        r = proc.call(x, y)
+        arr.push(r)
+      end
     else
-        to_a.my_each do |x|
-          r = yield(x)
-          arr.push(r)
-        end
+      to_a.my_each do |x|
+        r = yield(x)
+        arr.push(r)
+      end
       end
     end
-    arr
+  arr
   end
 
-  def my_inject(arg = nil, sym = nil)
-    arr = to_a
-    if block_given?
-      if !arg.nil?
-        acc = arg
-        arr.my_each do |x|
-          acc = yield(acc, x)
-        end
-      else
-        acc = arr[0]
-        arr[1..arr.length - 1].my_each do |x|
-          acc = yield(acc, x)
-        end
-      end
-    elsif !arg.nil? && !sym.nil?
+def my_inject(arg = nil, sym = nil)
+  arr = to_a
+  if block_given?
+    if !arg.nil?
       acc = arg
       arr.my_each do |x|
-        acc = acc.send(sym, x)
+        acc = yield(acc, x)
       end
-    elsif arg.class == Symbol
+    else
       acc = arr[0]
       arr[1..arr.length - 1].my_each do |x|
-        acc = acc.send(arg, x)
+        acc = yield(acc, x)
       end
     end
-    acc
+  elsif !arg.nil? && !sym.nil?
+    acc = arg
+    arr.my_each do |x|
+      acc = acc.send(sym, x)
+    end
+  elsif arg.class == Symbol
+    acc = arr[0]
+    arr[1..arr.length - 1].my_each do |x|
+      acc = acc.send(arg, x)
+    end
   end
+  acc
+end
 
-# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop:enable Metrics/ModuleLength
 
 def multiply_els(arg)
   arg.my_inject(:*)
