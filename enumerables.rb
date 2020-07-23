@@ -36,6 +36,7 @@ module Enumerable
     self
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_select(arg = nil)
     return to_enum(:my_select) unless block_given? || !arg.nil?
 
@@ -57,7 +58,7 @@ module Enumerable
     end
     arr || hash
   end
-
+  # rubocop:disable Metrics/MethodLength
   def my_all?(arg = nil)
     return false unless block_given? || arg.nil? == false || empty?
 
@@ -147,7 +148,6 @@ module Enumerable
     counter
   end
 
-  # rubocop:enable
   def my_map(proc = nil)
     return to_enum(:my_map) unless block_given?
 
@@ -174,40 +174,39 @@ module Enumerable
         r = yield(x)
         arr.push(r)
       end
-      end
     end
-  arr
+    arr
   end
 
-def my_inject(arg = nil, sym = nil)
-  arr = to_a
-  if block_given?
-    if !arg.nil?
+  def my_inject(arg = nil, sym = nil)
+    arr = to_a
+    if block_given?
+      if !arg.nil?
+        acc = arg
+        arr.my_each do |x|
+          acc = yield(acc, x)
+        end
+      else
+        acc = arr[0]
+        arr[1..arr.length - 1].my_each do |x|
+          acc = yield(acc, x)
+        end
+      end
+    elsif !arg.nil? && !sym.nil?
       acc = arg
       arr.my_each do |x|
-        acc = yield(acc, x)
+        acc = acc.send(sym, x)
       end
-    else
+    elsif arg.class == Symbol
       acc = arr[0]
       arr[1..arr.length - 1].my_each do |x|
-        acc = yield(acc, x)
+        acc = acc.send(arg, x)
       end
     end
-  elsif !arg.nil? && !sym.nil?
-    acc = arg
-    arr.my_each do |x|
-      acc = acc.send(sym, x)
-    end
-  elsif arg.class == Symbol
-    acc = arr[0]
-    arr[1..arr.length - 1].my_each do |x|
-      acc = acc.send(arg, x)
-    end
+    acc
   end
-  acc
 end
-
-# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/ModuleLength, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(arg)
   arg.my_inject(:*)
