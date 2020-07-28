@@ -60,6 +60,7 @@ module Enumerable
   end
 
   def my_all?(arg = nil)
+    return true if !block_given? && self.include?(nil) == false && include?(false) == false && arg.nil?
     return false unless block_given? || arg.nil? == false || empty?
 
     if block_given?
@@ -76,11 +77,11 @@ module Enumerable
       end
     elsif arg.class == Numeric
       my_each do |x|
-        return false unless x.class == arg
+        return false unless x.class.equal? arg
       end
     else
       my_each do |x|
-        return false unless arg == x
+        return false unless arg === x
       end
     end
     true
@@ -92,7 +93,7 @@ module Enumerable
 
     if block_given?
       my_each do |x|
-        return true if yield(x) == true
+        return true if yield(x)
       end
     elsif is_a? Hash
       my_each do |x, y|
@@ -104,14 +105,14 @@ module Enumerable
       end
     elsif (arg.is_a? Numeric) || (arg.is_a? String)
       my_each do |x|
-        return true if arg == x
+        return true if x == arg
       end
     else
       my_each do |x|
-        return true if x.class == arg
+        return true if x.is_a? arg
       end
-      false
     end
+    false
   end
 
   def my_none?(arg = nil, &block)
@@ -202,6 +203,8 @@ module Enumerable
       arr[1..arr.length - 1].my_each do |x|
         acc = acc.send(arg, x)
       end
+    else
+      yield
     end
     acc
   end
