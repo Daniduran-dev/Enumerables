@@ -59,27 +59,27 @@ module Enumerable
   end
 
   def my_all?(arg = nil)
-    return true if !block_given? && self.include?(nil) == false && include?(false) == false && arg.nil?
+    return true if !block_given? && include?(nil) == false && include?(false) == false && arg.nil?
     return false unless block_given? || arg.nil? == false || empty?
 
     if block_given?
-        my_each do |x|
-            return false unless yield(x)
-        end
+      my_each do |x|
+        return false unless yield(x)
+      end
     elsif arg.class == Regexp
-        my_each do |x|
-            return false unless x.match(arg)
-        end
+      my_each do |x|
+        return false unless x.match(arg)
+      end
     elsif arg.class == Numeric
-        my_each do |x|
-            return false unless x.class === arg
-        end
+      my_each do |x|
+        return false unless x.class === arg
+      end
     else
-        my_each do |x|
-            return false unless arg === x
-        end
-    end        
-    return true
+      my_each do |x|
+        return false unless arg === x
+      end
+    end
+    true
   end
 
   def my_any?(arg = nil)
