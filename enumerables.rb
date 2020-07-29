@@ -6,12 +6,11 @@ module Enumerable
     if is_a? Hash
       arr = to_a
       arr.size.times do |x|
-        yield(arr[x][0], arr[x][1])
+        yield(arr[x])
       end
     else
       size.times do |x|
         yield(to_a[x])
-        self
       end
     end
     self
@@ -64,27 +63,23 @@ module Enumerable
     return false unless block_given? || arg.nil? == false || empty?
 
     if block_given?
-      my_each do |x|
-        return false unless yield(x)
-      end
-    elsif is_a? Hash
-      my_each do |x, y|
-        return false unless yield(x, y)
-      end
+        my_each do |x|
+            return false unless yield(x)
+        end
     elsif arg.class == Regexp
-      my_each do |x|
-        return false unless x.match(arg)
-      end
+        my_each do |x|
+            return false unless x.match(arg)
+        end
     elsif arg.class == Numeric
-      my_each do |x|
-        return false unless x.class.equal? arg
-      end
+        my_each do |x|
+            return false unless x.class === arg
+        end
     else
-      my_each do |x|
-        return false unless arg === x
-      end
-    end
-    true
+        my_each do |x|
+            return false unless arg === x
+        end
+    end        
+    return true
   end
 
   def my_any?(arg = nil)
