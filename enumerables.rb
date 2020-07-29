@@ -66,6 +66,10 @@ module Enumerable
       my_each do |x|
         return false unless yield(x)
       end
+    elsif is_a? Hash
+      my_each do |x, y|
+        return false unless yield(x, y)
+      end
     elsif arg.class == Regexp
       my_each do |x|
         return false unless x.match(arg)
@@ -76,7 +80,7 @@ module Enumerable
       end
     else
       my_each do |x|
-        return false unless arg === x
+        return false unless arg === x # rubocop:disable Style/CaseEquality
       end
     end
     true
