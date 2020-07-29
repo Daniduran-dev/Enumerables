@@ -72,7 +72,7 @@ module Enumerable
       end
     elsif arg.class == Numeric
       my_each do |x|
-        return false unless x.class === arg
+        return false unless x.is_a? arg
       end
     else
       my_each do |x|
