@@ -1,5 +1,5 @@
 require_relative '../enumerables.rb'
-# rubocop: disable Metrics/BlockLength
+
 describe 'Enumerable' do
   let(:array) { [1, 2, 3] }
   let(:array_string) { %w[ant bear cat] }
@@ -132,4 +132,3 @@ describe 'Enumerable' do
     end
   end
 end
-# rubocop: enable Metrics/BlockLength
