@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../enumerables.rb'
 # rubocop: disable Metrics/BlockLength
 describe 'Enumerable' do
