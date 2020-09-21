@@ -1,5 +1,5 @@
 require_relative '../enumerables.rb'
-
+# rubocop:disable Metrics/BlockLength
 describe 'Enumerable' do
   let(:array) { [1, 2, 3] }
   let(:array_string) { %w[ant bear cat] }
@@ -57,10 +57,10 @@ describe 'Enumerable' do
 
   describe '#my_all?' do
     it 'returns true when all elements accomplish the block condition true.' do
-      expect(array_string.my_all? { |word| word.size > 0 }).to eql(true)
+      expect(array_string.my_all? { |word| word.size > 1 }).to eql(true)
     end
     it 'does not return false when all elements accomplish the block condition true.' do
-      expect(array_string.my_all? { |word| word.size > 0 }).not_to eql(false)
+      expect(array_string.my_all? { |word| word.size > 1 }).not_to eql(false)
     end
     it 'returns false if there is no block or argument' do
       expect(array_nil.my_all?).to eql(false)
@@ -152,19 +152,19 @@ describe 'Enumerable' do
   describe '#my_inject' do
     context 'if accumulator is defined' do
       it 'returns the result of accumulator and elements by using the given operator' do
-        expect((5..10).my_inject(2, :*)).to eql 302400
+        expect((5..10).my_inject(2, :*)).to eql 302_400
       end
       it 'does not return an array of accumulator and elements by using the given operator' do
         expect((5..10).my_inject(2, :*)).not_to be(Array)
       end
       it 'returns the result of accumulator and items by using given block' do
-        expect((5..10).my_inject(2) { |product, n| product * n }).to eql 302400
+        expect((5..10).my_inject(2) { |product, n| product * n }).to eql 302_400
       end
     end
 
     context "if accumulator isn't defined" do
       it 'returns the result of elements by using the given operator' do
-        expect((5..10).my_inject(:*)).to eql 151200
+        expect((5..10).my_inject(:*)).to eql 151_200
       end
 
       it 'returns the result of elements by using the given block' do
@@ -182,3 +182,4 @@ describe 'Enumerable' do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
