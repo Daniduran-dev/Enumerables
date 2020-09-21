@@ -75,7 +75,7 @@ describe 'Enumerable' do
       expect(array_nil.my_none?).to eql(false)
     end
 
-    it 'returns false if any element is absolutely equal to given pattern.matches the argument' do
+    it 'returns false if any element is absolutely equal to given pattern matches the argument' do
       expect(array_string.my_none?(/d/)).to eql(true)
     end
   end
@@ -106,7 +106,7 @@ describe 'Enumerable' do
 
   describe '#my_inject' do
     context 'if accumulator is defined' do
-      it 'returns the result of accumulator and elements by using the given operatorl' do
+      it 'returns the result of accumulator and elements by using the given operator' do
         expect((5..10).my_inject(2, :*)).to eql 302_400
       end
 
