@@ -21,7 +21,7 @@ You will find replicas for #each, #each_with_index, #count, #all, #any, #none, #
 ## Show your support
 
 Give a ⭐️ if you like this project!
-git add 
+
 ## Acknowledgments
 
 - Microverse
