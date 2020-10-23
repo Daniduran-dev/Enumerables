@@ -18,12 +18,6 @@ You will find replicas for #each, #each_with_index, #count, #all, #any, #none, #
 
 - Github: [@Daniduran-dev](https://github.com/Daniduran-dev)
 
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!
-
-Feel free to check the [issues page](issues/).
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
